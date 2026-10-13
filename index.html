@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfólio | Desenvolvedor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+@property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+:root{
+  --bg:#000; --panel:#070b14; --line:#14213d; --text:#e8eefc; --muted:#8a97b8;
+  --blue:#2f6bff; --blue2:#00b4ff;
+  --rgb:conic-gradient(from var(--ang),#0a3cff,#00b4ff,#7fd8ff,#00b4ff,#0a3cff,#06206b,#0a3cff);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--text);font-family:'Sora',system-ui,sans-serif;line-height:1.7;
+  background-image:radial-gradient(60rem 40rem at 85% -10%,rgba(47,107,255,.22),transparent 60%),radial-gradient(40rem 30rem at -10% 40%,rgba(0,180,255,.10),transparent 60%)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--blue2);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:12px}
+.sub{color:var(--muted);max-width:60ch;margin-bottom:36px}
+
+/* RGB */
+@keyframes spin{to{--ang:360deg}}
+.rgb-text{background:linear-gradient(90deg,#0a3cff,#00b4ff,#7fd8ff,#00b4ff,#0a3cff,#06206b,#0a3cff);background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:slide 6s linear infinite}
+@keyframes slide{to{background-position:300% 0}}
+.rgb-border{position:relative;border-radius:16px;background:var(--panel)}
+.rgb-border::before{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:var(--rgb);
+  animation:spin 5s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.9}
+.rgb-border::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--rgb);filter:blur(28px);opacity:.12;
+  animation:spin 5s linear infinite;z-index:-1;transition:opacity .3s}
+.rgb-border:hover::after{opacity:.3}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);background:rgba(0,0,0,.72);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-weight:800;letter-spacing:.5px}
+.links{display:flex;gap:26px;font-size:.9rem;color:var(--muted)}
+.links a:hover{color:var(--blue2)}
+nav::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,#0a3cff,#00b4ff,#7fd8ff,#00b4ff,#0a3cff,#06206b,#0a3cff);background-size:300% 100%;animation:slide 6s linear infinite;opacity:.8}
+
+/* hero */
+.hero{padding:96px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.08;font-weight:800;margin-bottom:18px}
+.hero p{color:var(--muted);max-width:46ch;margin-bottom:30px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:12px 24px;border-radius:10px;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .2s}
+.btn.main{background:var(--blue);color:#fff;box-shadow:0 0 24px rgba(47,107,255,.45)}
+.btn.main:hover{transform:translateY(-2px);box-shadow:0 0 34px rgba(0,180,255,.7)}
+.btn.ghost{border:1px solid var(--line);color:var(--text)}
+.btn.ghost:hover{border-color:var(--blue2);color:var(--blue2)}
+.code{padding:22px 24px;font-family:ui-monospace,'JetBrains Mono',Consolas,monospace;font-size:.85rem;line-height:1.9}
+.code .dots{display:flex;gap:7px;margin-bottom:14px}
+.code .dots i{width:11px;height:11px;border-radius:50%;background:#1b2a4a}
+.k{color:#6ea0ff}.s{color:#00e5ff}.c{color:#5b6b8c}
+
+/* sobre / skills */
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:40px}
+.about p{color:#b9c4e0;margin-bottom:14px}
+.facts{display:grid;gap:12px;align-content:start}
+.fact{border:1px solid var(--line);border-radius:12px;padding:14px 18px;background:var(--panel)}
+.fact b{display:block;color:var(--blue2);font-size:.85rem;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel);font-size:.9rem;transition:.2s}
+.chip:hover{border-color:var(--blue);box-shadow:0 0 16px rgba(47,107,255,.5);transform:translateY(-2px)}
+
+/* projetos */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:24px}
+.card{padding:26px;display:flex;flex-direction:column;gap:12px;min-height:240px}
+.card h3{font-size:1.15rem}
+.card p{color:var(--muted);font-size:.92rem;flex:1}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tags span{font-size:.75rem;color:var(--blue2);background:rgba(0,180,255,.1);padding:3px 10px;border-radius:6px}
+.card .row{display:flex;gap:16px;font-size:.9rem;font-weight:600}
+.card .row a{color:var(--blue2)}.card .row a:hover{text-decoration:underline}
+.card.empty{background:transparent;border:1.5px dashed var(--line);border-radius:16px;align-items:center;justify-content:center;text-align:center;color:var(--muted)}
+.card.empty::before,.card.empty::after{display:none}
+
+/* contato */
+.contact{text-align:center}
+.contact .sub{margin-inline:auto}
+.contact .btns{justify-content:center}
+footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+@media(max-width:800px){
+  .hero .wrap,.about{grid-template-columns:1fr}
+  .links{gap:16px;font-size:.8rem}
+  section{padding:64px 0}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#inicio" class="logo rgb-text" id="logo">&lt;/dev&gt;</a>
+    <div class="links">
+      <a href="#sobre">Sobre</a><a href="#skills">Skills</a><a href="#projetos">Projetos</a><a href="#contato">Contato</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <h1>Olá, eu sou <span class="rgb-text" id="nome">Seu Nome</span></h1>
+      <p id="resumo">Estudante de Análise e Desenvolvimento de Sistemas, apaixonado por transformar ideias em código. Aqui estão meus projetos e o que estou aprendendo.</p>
+      <div class="btns">
+        <a class="btn main" href="#projetos">Ver projetos</a>
+        <a class="btn ghost" href="#contato">Falar comigo</a>
+      </div>
+    </div>
+    <div class="code rgb-border" aria-hidden="true">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <div><span class="k">const</span> dev = {</div>
+      <div>&nbsp;&nbsp;nome: <span class="s" id="cNome">"Seu Nome"</span>,</div>
+      <div>&nbsp;&nbsp;curso: <span class="s">"Análise e Desenv. de Sistemas"</span>,</div>
+      <div>&nbsp;&nbsp;foco: <span class="s">"Desenvolvedor"</span>,</div>
+      <div>&nbsp;&nbsp;aprendendo: <span class="k">true</span>,</div>
+      <div>&nbsp;&nbsp;<span class="c">// novos projetos em breve</span></div>
+      <div>};</div>
+    </div>
+  </div>
+</header>
+
+<section id="sobre">
+  <div class="wrap">
+    <h2>Sobre mim</h2>
+    <div class="about">
+      <div>
+        <p>Cursando Análise e Desenvolvimento de Sistemas, estou construindo minha base como desenvolvedor na prática: criando projetos pessoais, errando, corrigindo e aprendendo com cada um.</p>
+        <p>Escreva aqui um pouco mais sobre você: o que te motivou a programar, que tipo de projeto gosta de fazer e o que busca agora (estágio, primeira vaga, freelas).</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>Formação</b>Análise e Desenvolvimento de Sistemas</div>
+        <div class="fact"><b>Local</b>São Paulo, Brasil</div>
+        <div class="fact"><b>Objetivo</b>Atuar como desenvolvedor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <p class="sub">Tecnologias que estudo e uso nos meus projetos.</p>
+    <div class="chips" id="skills-list"></div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="wrap">
+    <h2>Projetos</h2>
+    <p class="sub">Projetos pessoais e estudos. Cada um com o que usei e o que aprendi.</p>
+    <div class="grid" id="projects"></div>
+  </div>
+</section>
+
+<section id="contato" class="contact">
+  <div class="wrap">
+    <h2>Vamos conversar?</h2>
+    <p class="sub">Estou aberto a oportunidades, estágios e projetos em equipe. Me chame por qualquer um dos canais.</p>
+    <div class="btns" id="contact-links"></div>
+  </div>
+</section>
+
+<footer>© <span id="ano"></span> <span id="rodape">Seu Nome</span>. Feito à mão com HTML, CSS e JavaScript.</footer>
+
+<script>
+/* ============================================================
+   EDITE AQUI. Todo o conteúdo do site vem desta área.
+   ============================================================ */
+const PERFIL = {
+  nome: "Seu Nome",
+  email: "seuemail@exemplo.com",
+  github: "https://github.com/seu-usuario",
+  linkedin: "https://www.linkedin.com/in/seu-usuario"
+};
+
+const SKILLS = ["HTML", "CSS", "JavaScript", "Git e GitHub", "SQL", "Lógica de programação", "Java", "Python"];
+
+/* Para adicionar um projeto, copie um bloco { ... } e preencha.
+   Deixe "demo" ou "codigo" vazio ("") para esconder o link. */
+const PROJETOS = [
+  // {
+  //   titulo: "Nome do projeto",
+  //   descricao: "O que ele faz e qual problema resolve.",
+  //   tecnologias: ["HTML", "CSS", "JavaScript"],
+  //   demo: "https://link-do-projeto-online.com",
+  //   codigo: "https://github.com/seu-usuario/repositorio"
+  // },
+];
+/* ============================================================ */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+document.title = PERFIL.nome + " | Portfólio";
+$("nome").textContent = PERFIL.nome;
+$("cNome").textContent = '"' + PERFIL.nome + '"';
+$("rodape").textContent = PERFIL.nome;
+$("ano").textContent = new Date().getFullYear();
+
+$("skills-list").innerHTML = SKILLS.map(s => `<span class="chip">${esc(s)}</span>`).join("");
+
+const grid = $("projects");
+grid.innerHTML = PROJETOS.map(p => `
+  <article class="card rgb-border">
+    <h3>${esc(p.titulo)}</h3>
+    <p>${esc(p.descricao)}</p>
+    <div class="tags">${(p.tecnologias || []).map(t => `<span>${esc(t)}</span>`).join("")}</div>
+    <div class="row">
+      ${p.demo ? `<a href="${esc(p.demo)}" target="_blank" rel="noopener">Ver online</a>` : ""}
+      ${p.codigo ? `<a href="${esc(p.codigo)}" target="_blank" rel="noopener">Código</a>` : ""}
+    </div>
+  </article>`).join("");
+
+/* cartões de espaço reservado enquanto você ainda está construindo */
+const vazios = Math.max(0, 3 - PROJETOS.length);
+for (let i = 0; i < vazios; i++) {
+  grid.insertAdjacentHTML("beforeend",
+    `<div class="card empty"><div><h3>Projeto em construção</h3><p>Em breve por aqui.</p></div></div>`);
+}
+
+$("contact-links").innerHTML = `
+  <a class="btn main" href="mailto:${esc(PERFIL.email)}">${esc(PERFIL.email)}</a>
+  <a class="btn ghost" href="${esc(PERFIL.github)}" target="_blank" rel="noopener">GitHub</a>
+  <a class="btn ghost" href="${esc(PERFIL.linkedin)}" target="_blank" rel="noopener">LinkedIn</a>`;
+</script>
+</body>
+</html>
